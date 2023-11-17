@@ -6,12 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class WarriorTest {
     @Test
     void warriorTest(){
-        Warrior demoWarrior = new Warrior("ウォリアー", 100, 10);
-        Enemy demoSlime1 = new Enemy("でもスライム１", 100, 0);
+        int defaultHitpoint = 100;
+        Warrior demoWarrior = new Warrior("ウォリアー", defaultHitpoint, 10);
+        Enemy demoSlime1 = new Enemy("でもスライム１", defaultHitpoint, 0);
 
-        for(int count=0; count<3; count++){
+        for(int count = 0; count < 3; count ++){
+            demoSlime1.setHitpoint(defaultHitpoint);
             demoWarrior.attackWithWeponSkil(demoSlime1);
+            assertEquals((int)demoWarrior.getAttack()*1.5, (defaultHitpoint - demoSlime1.getHitPoint()));
+
         }
-        assertEquals(45, (100 - demoSlime1.getHitPoint()));
     }
 }
